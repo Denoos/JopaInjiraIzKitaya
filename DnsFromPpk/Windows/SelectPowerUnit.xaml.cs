@@ -20,18 +20,18 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectPowerUnit : Window
     {
-        PowerUnit SelectedComponent = null;
+        public PowerUnit SelectedComponent { get; set; }
+        public List<PowerUnit> AllSelectedComponents { get; set; } = new();
         public SelectPowerUnit()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<PowerUnit> ProducatRange = new();
             if (AllComponents != null)
             {
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is PowerUnit)
-                        ProducatRange.Add((PowerUnit)AllComponents[i]);
+                        AllSelectedComponents.Add((PowerUnit)AllComponents[i]);
             }
             else MessageBox.Show("AllComponents is null");
         }
@@ -41,9 +41,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             {
-                Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

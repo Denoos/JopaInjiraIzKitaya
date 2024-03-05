@@ -20,18 +20,18 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectCooler : Window
     {
-        Cooler SelectedComponent = null;
+        public Cooler SelectedComponent { get; set; }
+        public List<Cooler> AllSelectedComponents { get; set; } = new();
         public SelectCooler()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<Cooler> ProducatRange = new();
             if (AllComponents != null)
             {
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is Cooler)
-                        ProducatRange.Add((Cooler)AllComponents[i]);
+                        AllSelectedComponents.Add((Cooler)AllComponents[i]);
             }
             else MessageBox.Show("AllComponents is null");
         }
@@ -41,9 +41,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             {
-                Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

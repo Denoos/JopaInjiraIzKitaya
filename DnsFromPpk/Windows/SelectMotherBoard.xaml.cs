@@ -20,18 +20,18 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectMotherBoard : Window
     {
-        MotherBoard SelectedComponent = null;
+        public MotherBoard SelectedComponent { get; set; }
+        public List<MotherBoard> AllSelectedComponents { get; set; } = new();
         public SelectMotherBoard()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<MotherBoard> ProducatRange = new();
             if (AllComponents != null)
             {
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is MotherBoard)
-                        ProducatRange.Add((MotherBoard)AllComponents[i]);
+                        AllSelectedComponents.Add((MotherBoard)AllComponents[i]);
             }
             else MessageBox.Show("AllComponents is null");
         }
@@ -41,9 +41,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             {
-                Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

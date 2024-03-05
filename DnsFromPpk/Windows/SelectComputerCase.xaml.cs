@@ -39,7 +39,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             { 
-                Close();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

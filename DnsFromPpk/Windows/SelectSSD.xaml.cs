@@ -20,18 +20,18 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectSSD : Window
     {
-        Ssd SelectedComponent = null;
+        public Ssd SelectedComponent { get; set; }
+        public List<Ssd> AllSelectedComponents { get; set; } = new();
         public SelectSSD()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<Ssd> ProducatRange = new();
             if (AllComponents != null)
             {
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is Ssd)
-                        ProducatRange.Add((Ssd)AllComponents[i]);
+                        AllSelectedComponents.Add((Ssd)AllComponents[i]);
             }
             else MessageBox.Show("AllComponents is null");
         }
@@ -41,9 +41,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             {
-                Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

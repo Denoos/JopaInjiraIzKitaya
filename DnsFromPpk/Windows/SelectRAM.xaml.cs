@@ -20,18 +20,18 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectRAM : Window
     {
-        Ram SelectedComponent = null;
+        public Ram SelectedComponent { get; set; }
+        public List<Ram> AllSelectedComponents { get; set; } = new();
         public SelectRAM()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<Ram> ProducatRange = new();
             if (AllComponents != null)
             {
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is Ram)
-                        ProducatRange.Add((Ram)AllComponents[i]);
+                        AllSelectedComponents.Add((Ram)AllComponents[i]);
             }
             else MessageBox.Show("AllComponents is null");
         }
@@ -41,9 +41,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             {
-                Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

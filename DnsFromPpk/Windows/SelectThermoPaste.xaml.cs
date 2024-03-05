@@ -20,18 +20,18 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectThermoPaste : Window
     {
-        ThermoPaste SelectedComponent = null;
+        public ThermoPaste SelectedComponent { get; set; }
+        public List<ThermoPaste> AllSelectedComponents { get; set; } = new();
         public SelectThermoPaste()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<ThermoPaste> ProducatRange = new();
             if (AllComponents != null)
             {
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is ThermoPaste)
-                        ProducatRange.Add((ThermoPaste)AllComponents[i]);
+                        AllSelectedComponents.Add((ThermoPaste)AllComponents[i]);
             }
             else MessageBox.Show("AllComponents is null");
         }
@@ -41,9 +41,6 @@ namespace DnsFromPpk
 
             if (SelectedComponent != null)
             {
-                Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");
