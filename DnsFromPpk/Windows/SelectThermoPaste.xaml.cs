@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnsFromPpk.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,33 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectThermoPaste : Window
     {
+        ThermoPaste SelectedComponent = null;
         public SelectThermoPaste()
         {
             InitializeComponent();
+            DataContext = this;
+            List<object> AllComponents = MainWindow.GetInstance().AllComponents;
+            List<ThermoPaste> ProducatRange = new();
+            if (AllComponents != null)
+            {
+                for (int i = 0; i < AllComponents.Count; i++)
+                    if (AllComponents[i] is ThermoPaste)
+                        ProducatRange.Add((ThermoPaste)AllComponents[i]);
+            }
+            else MessageBox.Show("AllComponents is null");
+        }
+
+        private void Select(object sender, RoutedEventArgs e)
+        {
+
+            if (SelectedComponent != null)
+            {
+                Close();
+                MainWindow fs = MainWindow.GetInstance();
+                fs.Show();
+                MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
+            }
+            else MessageBox.Show("Выберите что-нибудь.");
         }
     }
 }

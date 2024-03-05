@@ -20,17 +20,17 @@ namespace DnsFromPpk
     /// </summary>
     public partial class SelectComputerCase : Window
     {
-        Cpu SelectedComponent = null;
+        public ComputerCase SelectedComponent { get; set; }
+        public List<ComputerCase> AllSelectedComponents { get; set; } = new();
         public SelectComputerCase()
         {
             InitializeComponent();
             DataContext = this;
             List<object> AllComponents = MainWindow.GetInstance().AllComponents;
-            List<ComputerCase> ProducatRange = new();
             if (AllComponents != null) { 
                 for (int i = 0; i < AllComponents.Count; i++)
                     if (AllComponents[i] is ComputerCase)
-                        ProducatRange.Add((ComputerCase)AllComponents[i]); }
+                        AllSelectedComponents.Add((ComputerCase)AllComponents[i]); }
             else MessageBox.Show("AllComponents is null");
         }
 
@@ -40,8 +40,6 @@ namespace DnsFromPpk
             if (SelectedComponent != null)
             { 
                 Close();
-                MainWindow fs = MainWindow.GetInstance();
-                fs.Show();
                 MainWindow.GetInstance().AllSelectedComponents.Add(SelectedComponent);
             }
             else MessageBox.Show("Выберите что-нибудь.");

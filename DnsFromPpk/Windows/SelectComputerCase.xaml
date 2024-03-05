@@ -4,20 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnsFromPpk"
+        xmlns:local1="clr-namespace:DnsFromPpk.Components"
+        xmlns:conv="clr-namespace:DnsFromPpk.Converter"
+        
         mc:Ignorable="d"
         Title="SelectComputerCase" Height="450" Width="800">
+    
     <Window.Resources>
-        <DataTemplate x:Key="ComputerCase">
+        <conv:ConverterForImage x:Key="converter2"/>
+
+        <DataTemplate DataType="{x:Type local1:ComputerCase}">
             <StackPanel Orientation="Horizontal">
-                <Label Content="{Binding Path=Name}"/>
-                <Label Content="{Binding Path=Cost}" DataContext="string"/>
-                <Label Content="{Binding Path=MaxGpuLong}" DataContext="string"/>
-                <Label Content="{Binding Path=SsdSlots}" DataContext="string"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text="{Binding Path=Cost, StringFormat=Cost: {0}}"/>
+                <TextBlock Text="{Binding Path=MaxGpuLong, StringFormat=MaximumLongOfGPU: {0}}"/>
+                <TextBlock Text="{Binding Path=SsdSlots, StringFormat=SlotsForSSD: {0}}"/>
+                <Image Height="50" Source="{Binding Cost, Converter={StaticResource converter2}}"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox SelectedItem="{Binding Source= SelectedComponent, Path=ComputerCase}" ItemsSource="{Binding Source= AllComponents, Path=ComputerCase}"/>          
+        <ListBox SelectedItem="{Binding SelectedComponent}" ItemsSource="{Binding AllSelectedComponents}"/>          
         <Button Content="Select" Click="Select" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="Auto" Height="Auto"/>
     </Grid>
 </Window>

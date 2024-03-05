@@ -95,70 +95,54 @@ namespace DnsFromPpk
         {
             SelectCPU af = new();
             af.Show();
-            Close();
         }
 
         private void SelectGPU(object sender, RoutedEventArgs e)
         {
             SelectGPU af = new();
             af.Show();
-            Close();
         }
 
         private void SelectComputerCase(object sender, RoutedEventArgs e)
         {
             SelectComputerCase af = new();
             af.Show();
-            Close();
         }
 
         private void SelectCooler(object sender, RoutedEventArgs e)
         {
             SelectCooler af = new();
             af.Show();
-            Close();
         }
 
         private void SelectMotherBoard(object sender, RoutedEventArgs e)
         {
             SelectMotherBoard af = new();
             af.Show();
-            Close();
         }
 
         private void SelectPowerUnit(object sender, RoutedEventArgs e)
         {
             SelectPowerUnit af = new();
             af.Show();
-            Close();
         }
 
         private void SelectRAM(object sender, RoutedEventArgs e)
         {
             SelectRAM af = new();
             af.Show();
-            Close();
         }
 
         private void SelectSSD(object sender, RoutedEventArgs e)
         {
             SelectSSD af = new();
             af.Show();
-            Close();
         }
 
         private void SelectThermoPaste(object sender, RoutedEventArgs e)
         {
             SelectThermoPaste af = new();
             af.Show();
-            Close();
         }
     }
 }
-
-//---------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------------------------------
-
-/*Пишем приложение для отображения товаров по типу ООО ДНС :)
-Требования: Каждый товар должен иметь отдельный DataTemplate
-Напротив каждого товара с помощью конвертера добавить изображение (пусть она зависит от цены/типа товара)*/
