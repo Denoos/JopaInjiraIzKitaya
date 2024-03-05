@@ -1,0 +1,48 @@
+﻿<Window x:Class="DnsFromPpk.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnsFromPpk"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="820">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions> <!--10-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions> <!--2-->
+
+        <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+            <Image Width="110" VerticalAlignment="Center" HorizontalAlignment="Right" Source="/1.jpg" Margin="10" Height="98"/>
+            <Label Content="Барахолка ППК" FontSize="70" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Source="/1.jpg" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+        </StackPanel> <!--Барахолка ППК-->
+
+        <ItemsControl  ItemsSource="{Binding AllSelectedComponents}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Grid.RowSpan="9"/> <!--Список слева (является одним целым элементом)-->
+
+        <Button Content="Select CPU" Grid.Column="1" Grid.Row="1" Margin="40, 2, 40, 2" Click="SelectCPU"/>
+        <Button Content="Select GPU" Grid.Column="1" Grid.Row="2" Margin="40, 2, 40, 2" Click="SelectGPU"/>
+        <Button Content="Select Computer Case" Grid.Column="1" Grid.Row="3" Margin="40, 2, 40, 2" Click="SelectComputerCase"/>
+        <Button Content="Select Cooler" Grid.Column="1" Grid.Row="4" Margin="40, 2, 40, 2" Click="SelectCooler"/>
+        <Button Content="Select Mother Board" Grid.Column="1" Grid.Row="5" Margin="40, 2, 40, 2" Click="SelectMotherBoard"/>
+        <Button Content="Select Power Unit" Grid.Column="1" Grid.Row="6" Margin="40, 2, 40, 2" Click="SelectPowerUnit"/>
+        <Button Content="Select RAM" Grid.Column="1" Grid.Row="7" Margin="40, 2, 40, 2" Click="SelectRAM"/>
+        <Button Content="Select SSD" Grid.Column="1" Grid.Row="8" Margin="40, 2, 40, 2" Click="SelectSSD"/>
+        <Button Content="Select Thermo Paste" Grid.Column="1" Grid.Row="9" Margin="40, 2, 40, 2" Click="SelectThermoPaste"/>
+
+    </Grid>
+</Window>
